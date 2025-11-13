@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jurnalku_app/catatansikap_page.dart';
+import 'package:jurnalku_app/panduan_page.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -28,6 +29,18 @@ class _LandingPageState extends State<LandingPage> {
               );
             },
             child: Text('Go to catatan sikap page'),
+          ),
+          SizedBox(height: 10,),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context, 
+                  MaterialPageRoute(
+                    builder: (context) => PanduanPenggunaanPage(),
+                ),
+              );
+            },
+            child: Text('Go to catatan Panduan page'),
           ),
         ],
       ),
