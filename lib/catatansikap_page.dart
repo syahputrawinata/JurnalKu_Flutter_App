@@ -1,6 +1,24 @@
 import 'package:flutter/material.dart';
 
 class CatatanSikapPage extends StatelessWidget {
+  Widget _rowData(String title, String value) {
+  return Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SizedBox(
+        width: 120,
+        child: Text(
+          title,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ),
+      Expanded(
+        child: Text(value),
+      ),
+    ],
+  );
+}
+
   const CatatanSikapPage({super.key});
 
   @override
@@ -161,55 +179,42 @@ class CatatanSikapPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 25),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
-              decoration: BoxDecoration(
-                color: Colors.grey.shade100,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(8),
-                  topRight: Radius.circular(8),
-                ),
-                border: Border.all(color: Colors.grey.shade300),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(child: Text('NO', style: TextStyle(fontWeight: FontWeight.bold))),
-                  Expanded(child: Text('KATEGORI', style: TextStyle(fontWeight: FontWeight.bold))),
-                  Expanded(child: Text('CATATAN', style: TextStyle(fontWeight: FontWeight.bold))),
-                  Expanded(child: Text('STATUS', style: TextStyle(fontWeight: FontWeight.bold))),
-                  Expanded(child: Text('DILAPORKAN', style: TextStyle(fontWeight: FontWeight.bold))),
-                  Expanded(child: Text('UPDATE TERAKHIR', style: TextStyle(fontWeight: FontWeight.bold))),
-                  Expanded(child: Text('AKSI', style: TextStyle(fontWeight: FontWeight.bold))),
-                ],
-              ),
-            ),
+
             Container(
               width: double.infinity,
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
                 border: Border.all(color: Colors.grey.shade300),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(8),
-                  bottomRight: Radius.circular(8),
-                ),
               ),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(Icons.check_circle_outline, size: 50, color: Colors.grey),
-                  SizedBox(height: 10),
-                  Text(
-                    'Tidak ada catatan',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black54),
-                  ),
-                  SizedBox(height: 4),
-                  Text(
-                    'Belum ada catatan sikap yang dilaporkan',
-                    style: TextStyle(fontSize: 14, color: Colors.black45),
-                  ),
+                  _rowData('No', '1'),
+                  Divider(),
+                  _rowData('Kategori', 'Perilaku'),
+                  Divider(),
+                  _rowData('Catatan', 'Terlambat masuk kelas'),
+                  Divider(),
+                  _rowData('Status', 'Dalam Perbaikan'),
+                  Divider(),
+                  _rowData('Dilaporkan', '12 Nov 2024'),
+                  Divider(),
+                  _rowData('Update Terakhir', '14 Nov 2024'),
+                  Divider(),
+                  _rowData('Aksi', 'Menunggu Konfirmasi'),
+                  SizedBox(height: 12),
+                  // Align(
+                  //   alignment: Alignment.centerRight,
+                  //   child: ElevatedButton(
+                  //     onPressed: () {},
+                  //     child: Text('Aksi'),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
+            SizedBox(height: 20),
           ],
         ),
       ),

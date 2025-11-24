@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jurnalku_app/catatansikap_page.dart';
+import 'package:jurnalku_app/dashboard_page.dart';
 import 'package:jurnalku_app/panduan_page.dart';
 import 'package:jurnalku_app/permintaansaksi_page.dart';
 
@@ -54,6 +55,18 @@ class _LandingPageState extends State<LandingPage> {
               );
             },
             child: Text('Go to Permintaan Saksi page'),
+          ),
+          SizedBox(height: 10,),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context, 
+                  MaterialPageRoute(
+                    builder: (context) => Dashboard(),
+                ),
+              );
+            },
+            child: Text('Go to Dashboard page'),
           ),
         ],
       ),

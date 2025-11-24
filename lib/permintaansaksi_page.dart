@@ -2,6 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:jurnalku_app/landing_page.dart';
 
 class PermintaanSaksi extends StatelessWidget {
+  Widget _rowData(String title, String value) {
+  return Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SizedBox(
+        width: 120,
+        child: Text(
+          title,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ),
+      Expanded(
+        child: Text(value),
+      ),
+    ],
+  );
+}
+
   const PermintaanSaksi({super.key});
 
   @override
@@ -141,6 +159,28 @@ class PermintaanSaksi extends StatelessWidget {
                 ],
               ),
             ),
+
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.grey.shade300),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _rowData('Pengirim', 'Syahputra Winata'),
+                  Divider(),
+                  _rowData('Tanggal', '12 Nov 2024'),
+                  Divider(),
+                  _rowData('Konfirmasi', 'Menunggu Konfirmasi'),
+                  Divider(),
+                  SizedBox(height: 12),
+                ],
+              ),
+            ),
+            SizedBox(height: 20),
           ],
         ),
       ),
