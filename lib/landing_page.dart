@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jurnalku_app/catatansikap_page.dart';
 import 'package:jurnalku_app/panduan_page.dart';
 import 'package:jurnalku_app/permintaansaksi_page.dart';
+import 'package:jurnalku_app/jelajahi_page.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -19,41 +20,58 @@ class _LandingPageState extends State<LandingPage> {
           Center(
             child: Text('Landing Page'),
           ),
-          SizedBox(height: 10,),
+          SizedBox(
+            height: 10,
+          ),
           ElevatedButton(
             onPressed: () {
               Navigator.push(
-                context, 
-                  MaterialPageRoute(
-                    builder: (context) => CatatanSikapPage(),
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CatatanSikapPage(),
                 ),
               );
             },
             child: Text('Go to catatan sikap page'),
           ),
-          SizedBox(height: 10,),
+          SizedBox(
+            height: 10,
+          ),
           ElevatedButton(
             onPressed: () {
               Navigator.push(
-                context, 
-                  MaterialPageRoute(
-                    builder: (context) => PanduanPenggunaanPage(),
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PanduanPenggunaanPage(),
                 ),
               );
             },
             child: Text('Go to catatan Panduan page'),
           ),
-          SizedBox(height: 10,),
+          SizedBox(
+            height: 10,
+          ),
           ElevatedButton(
             onPressed: () {
               Navigator.push(
-                context, 
-                  MaterialPageRoute(
-                    builder: (context) => PermintaanSaksi(),
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PermintaanSaksi(),
                 ),
               );
             },
             child: Text('Go to Permintaan Saksi page'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => JelajahiPage(),
+                ),
+              );
+            },
+            child: Text('Go to Permintaan Jelajahi page'),
           ),
         ],
       ),
