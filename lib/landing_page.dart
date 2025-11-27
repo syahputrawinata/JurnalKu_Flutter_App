@@ -3,6 +3,7 @@ import 'package:jurnalku_app/catatansikap_page.dart';
 import 'package:jurnalku_app/dashboard_page.dart';
 import 'package:jurnalku_app/panduan_page.dart';
 import 'package:jurnalku_app/permintaansaksi_page.dart';
+import 'package:jurnalku_app/progressbelajar_page.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -67,6 +68,18 @@ class _LandingPageState extends State<LandingPage> {
               );
             },
             child: Text('Go to Dashboard page'),
+          ),
+          SizedBox(height: 10,),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context, 
+                  MaterialPageRoute(
+                    builder: (context) => ProgressBelajar(),
+                ),
+              );
+            },
+            child: Text('Go to Progress Belajar page'),
           ),
         ],
       ),
