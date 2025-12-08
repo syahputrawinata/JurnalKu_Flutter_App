@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jurnalku_app/catatansikap_page.dart';
+import 'package:jurnalku_app/jelajahi_page.dart';
 import 'package:jurnalku_app/login_page.dart';
 import 'package:jurnalku_app/panduan_page.dart';
 import 'package:jurnalku_app/pengaturan.dart';
@@ -144,6 +145,18 @@ class _LandingPageState extends State<LandingPage> {
               );
             },
             child: Text('Go to Login page'),
+          ),
+          SizedBox(height: 10,),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context, 
+                  MaterialPageRoute(
+                    builder: (context) => JelajahiPage(),
+                ),
+              );
+            },
+            child: Text('Go to Jelajahi Page'),
           ),
           
 

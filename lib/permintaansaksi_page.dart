@@ -115,52 +115,6 @@ class PermintaanSaksi extends StatelessWidget {
 
             //tabel
             Container(
-              padding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
-              decoration: BoxDecoration(
-                color: Colors.grey.shade100,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(8),
-                  topRight: Radius.circular(8),
-                ),
-                border: Border.all(color: Colors.grey.shade300),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(child: Text('PENGIRIM', style: TextStyle(fontWeight: FontWeight.bold))),
-                  Expanded(child: Text('TANGGAL', style: TextStyle(fontWeight: FontWeight.bold))),
-                  Expanded(child: Text('KONFIRMASI', style: TextStyle(fontWeight: FontWeight.bold))),
-                ],
-              ),
-            ),
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey.shade300),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(8),
-                  bottomRight: Radius.circular(8),
-                ),
-              ),
-              child: Column(
-                children: [
-                  Icon(Icons.group, size: 50, color: Colors.grey),
-                  SizedBox(height: 10),
-                  Text(
-                    "Belum ada permintaan",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black54),
-                  ),
-                  SizedBox(height: 4),
-                  Text(
-                    'Belum ada yang mengirim permintaan saksi kepada Anda',
-                    style: TextStyle(fontSize: 14, color: Colors.black45),
-                  ),
-                ],
-              ),
-            ),
-
-            Container(
               width: double.infinity,
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
