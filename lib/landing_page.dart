@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:jurnalku_app/catatansikap_page.dart';
+import 'package:jurnalku_app/login_page.dart';
 import 'package:jurnalku_app/panduan_page.dart';
+import 'package:jurnalku_app/pengaturan.dart';
+import 'package:jurnalku_app/Profile.dart';
+import 'package:jurnalku_app/pembiasaan_page.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -41,6 +45,54 @@ class _LandingPageState extends State<LandingPage> {
               );
             },
             child: Text('Go to catatan Panduan page'),
+          ),
+           SizedBox(height: 10,),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context, 
+                  MaterialPageRoute(
+                    builder: (context) => JurnalkuPage(),
+                ),
+              );
+            },
+            child: Text('Go to Login page'),
+          ),
+          SizedBox(height: 7,),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context, 
+                  MaterialPageRoute(
+                    builder: (context) => PengaturanPage(),
+                ),
+              );
+            },
+            child: Text('Go to Pengaturan page'),
+          ),
+          SizedBox(height: 7,),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context, 
+                  MaterialPageRoute(
+                    builder: (context) => Profile(),
+                ),
+              );
+            },
+            child: Text('Go to Profile '),
+          ),
+           SizedBox(height: 7,),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context, 
+                  MaterialPageRoute(
+                    builder: (context) => JurnalPembiasaanPage(),
+                ),
+              );
+            },
+            child: Text('Go to Pemb1asaan page'),
           ),
         ],
       ),
