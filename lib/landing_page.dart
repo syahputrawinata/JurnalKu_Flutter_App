@@ -5,6 +5,10 @@ import 'package:jurnalku_app/panduan_page.dart';
 import 'package:jurnalku_app/pengaturan.dart';
 import 'package:jurnalku_app/Profile.dart';
 import 'package:jurnalku_app/pembiasaan_page.dart';
+import 'package:jurnalku_app/dashboard_page.dart';
+import 'package:jurnalku_app/panduan_page.dart';
+import 'package:jurnalku_app/permintaansaksi_page.dart';
+import 'package:jurnalku_app/progressbelajar_page.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -46,53 +50,41 @@ class _LandingPageState extends State<LandingPage> {
             },
             child: Text('Go to catatan Panduan page'),
           ),
-           SizedBox(height: 10,),
+          SizedBox(height: 10,),
           ElevatedButton(
             onPressed: () {
               Navigator.push(
                 context, 
                   MaterialPageRoute(
-                    builder: (context) => JurnalkuPage(),
+                    builder: (context) => PermintaanSaksi(),
                 ),
               );
             },
-            child: Text('Go to Login page'),
+            child: Text('Go to Permintaan Saksi page'),
           ),
-          SizedBox(height: 7,),
+          SizedBox(height: 10,),
           ElevatedButton(
             onPressed: () {
               Navigator.push(
                 context, 
                   MaterialPageRoute(
-                    builder: (context) => PengaturanPage(),
+                    builder: (context) => Dashboard(),
                 ),
               );
             },
-            child: Text('Go to Pengaturan page'),
+            child: Text('Go to Dashboard page'),
           ),
-          SizedBox(height: 7,),
+          SizedBox(height: 10,),
           ElevatedButton(
             onPressed: () {
               Navigator.push(
                 context, 
                   MaterialPageRoute(
-                    builder: (context) => Profile(),
+                    builder: (context) => ProgressBelajar(),
                 ),
               );
             },
-            child: Text('Go to Profile '),
-          ),
-           SizedBox(height: 7,),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context, 
-                  MaterialPageRoute(
-                    builder: (context) => JurnalPembiasaanPage(),
-                ),
-              );
-            },
-            child: Text('Go to Pemb1asaan page'),
+            child: Text('Go to Progress Belajar page'),
           ),
         ],
       ),
