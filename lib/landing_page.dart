@@ -6,7 +6,6 @@ import 'package:jurnalku_app/pengaturan.dart';
 import 'package:jurnalku_app/Profile.dart';
 import 'package:jurnalku_app/pembiasaan_page.dart';
 import 'package:jurnalku_app/dashboard_page.dart';
-import 'package:jurnalku_app/panduan_page.dart';
 import 'package:jurnalku_app/permintaansaksi_page.dart';
 import 'package:jurnalku_app/progressbelajar_page.dart';
 
@@ -86,6 +85,68 @@ class _LandingPageState extends State<LandingPage> {
             },
             child: Text('Go to Progress Belajar page'),
           ),
+          SizedBox(height: 10,),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context, 
+                  MaterialPageRoute(
+                    builder: (context) => JurnalPembiasaanPage(),
+                ),
+              );
+            },
+            child: Text('Go to Pembiasaan page'),
+          ),
+          SizedBox(height: 10,),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context, 
+                  MaterialPageRoute(
+                    builder: (context) => Profile(),
+                ),
+              );
+            },
+            child: Text('Go to Profile page'),
+          ),
+          SizedBox(height: 10,),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context, 
+                  MaterialPageRoute(
+                    builder: (context) => PengaturanPage(),
+                ),
+              );
+            },
+            child: Text('Go to Pengaturan page'),
+          ),
+          SizedBox(height: 10,),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context, 
+                  MaterialPageRoute(
+                    builder: (context) => JurnalkuPage(),
+                ),
+              );
+            },
+            child: Text('Go to Login page'),
+          ),
+          SizedBox(height: 10,),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context, 
+                  MaterialPageRoute(
+                    builder: (context) => PanduanPenggunaanPage(),
+                ),
+              );
+            },
+            child: Text('Go to Login page'),
+          ),
+          
+
         ],
       ),
     );
