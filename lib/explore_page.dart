@@ -68,14 +68,14 @@ List<Student> students = [
   ),
 ];
 
-class JelajahiPage extends StatefulWidget {
-  const JelajahiPage({super.key});
+class ExplorePage extends StatefulWidget {
+  const ExplorePage({super.key});
 
   @override
-  State<JelajahiPage> createState() => _JelajahiPageState();
+  State<ExplorePage> createState() => _ExplorePageState();
 }
 
-class _JelajahiPageState extends State<JelajahiPage> {
+class _ExplorePageState extends State<ExplorePage> {
   final TextEditingController _searchController = TextEditingController();
   List<Student> filteredStudents = students;
 
@@ -131,7 +131,7 @@ class _JelajahiPageState extends State<JelajahiPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                 ),
                 child: const Text(
-                  "Login",
+                  "Dashboard",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 13,

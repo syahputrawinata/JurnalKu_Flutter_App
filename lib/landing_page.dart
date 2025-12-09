@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jurnalku_app/catatansikap_page.dart';
+import 'package:jurnalku_app/explore_page.dart';
 import 'package:jurnalku_app/jelajahi_page.dart';
 import 'package:jurnalku_app/login_page.dart';
 import 'package:jurnalku_app/panduan_page.dart';
@@ -144,7 +145,7 @@ class _LandingPageState extends State<LandingPage> {
                 ),
               );
             },
-            child: Text('Go to Login page'),
+            child: Text('Go to Panduan Pengguna page'),
           ),
           SizedBox(height: 10,),
           ElevatedButton(
@@ -158,8 +159,19 @@ class _LandingPageState extends State<LandingPage> {
             },
             child: Text('Go to Jelajahi Page'),
           ),
+          SizedBox(height: 10,),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context, 
+                  MaterialPageRoute(
+                    builder: (context) => ExplorePage(),
+                ),
+              );
+            },
+            child: Text('Go to Explore Page(untuk yang sudah login)'),
+          ),
           
-
         ],
       ),
     );
