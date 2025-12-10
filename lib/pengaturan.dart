@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jurnalku_app/landing_page.dart';
 
 class PengaturanPage extends StatefulWidget {
   const PengaturanPage({super.key});
@@ -17,62 +16,62 @@ class _PengaturanPageState extends State<PengaturanPage> {
   String _oldPass = '';
   String _newPass = '';
 
-  PreferredSizeWidget _buildAppBar() {
-    return PreferredSize(
-      preferredSize: const Size.fromHeight(70),
-      child: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 1,
-        leading: IconButton(
-          icon: const Icon(Icons.home, color: Colors.black),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const LandingPage(),
-              ),
-            );
-          },
-        ),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  'Muhammad Jauhara Makinan',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
-                SizedBox(height: 4),
-                Text(
-                  'PPLG XII-4',
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 12,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 12.0),
-            child: CircleAvatar(
-              backgroundColor: Colors.blueGrey[50],
-              child: const Icon(Icons.person, size: 36, color: Colors.blueGrey),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // PreferredSizeWidget _buildAppBar() {
+  //   return PreferredSize(
+  //     preferredSize: const Size.fromHeight(70),
+  //     child: AppBar(
+  //       backgroundColor: Colors.white,
+  //       elevation: 1,
+  //       leading: IconButton(
+  //         icon: const Icon(Icons.home, color: Colors.black),
+  //         onPressed: () {
+  //           Navigator.push(
+  //             context,
+  //             MaterialPageRoute(
+  //               builder: (context) => const LandingPage(),
+  //             ),
+  //           );
+  //         },
+  //       ),
+  //       title: Row(
+  //         mainAxisAlignment: MainAxisAlignment.end,
+  //         children: [
+  //           Column(
+  //             crossAxisAlignment: CrossAxisAlignment.end,
+  //             mainAxisAlignment: MainAxisAlignment.center,
+  //             children: const [
+  //               Text(
+  //                 'Muhammad Jauhara Makinan',
+  //                 style: TextStyle(
+  //                   color: Colors.black,
+  //                   fontWeight: FontWeight.bold,
+  //                   fontSize: 16,
+  //                 ),
+  //               ),
+  //               SizedBox(height: 4),
+  //               Text(
+  //                 'PPLG XII-4',
+  //                 style: TextStyle(
+  //                   color: Colors.grey,
+  //                   fontSize: 12,
+  //                 ),
+  //               ),
+  //             ],
+  //           ),
+  //         ],
+  //       ),
+  //       actions: [
+  //         Padding(
+  //           padding: const EdgeInsets.only(right: 12.0),
+  //           child: CircleAvatar(
+  //             backgroundColor: Colors.blueGrey[50],
+  //             child: const Icon(Icons.person, size: 36, color: Colors.blueGrey),
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   InputDecoration _readOnlyDecoration(String hint) {
     return InputDecoration(
@@ -104,8 +103,170 @@ class _PengaturanPageState extends State<PengaturanPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(),
-      backgroundColor: const Color(0xFFF7F9FB),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 1,
+        leading: IconButton(
+          icon: const Icon(Icons.home, color: Colors.black),
+          onPressed: () {
+            Navigator.pushNamed(context, '/explore');
+          },
+        ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: const [
+                Text(
+                  'Syahputra Winata',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+                SizedBox(height: 4),
+                Text(
+                  'PPLG XII-4',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 12,
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: Builder(
+              builder: (context) {
+                return GestureDetector(
+                  onTap: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  child: const CircleAvatar(
+                    radius: 16,
+                    child: Icon(Icons.person, size: 32),
+                  ),
+                );
+              },
+            ),
+          )
+        ]
+      ),
+
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: Text('Menu', style: TextStyle(
+                  color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Dashboard'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/dashboard");
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Profil'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/profil");
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Jelajahi'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/explore");
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Jurnal Pembiasaan'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/jurnalpembiasaan");
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Permintaan Saksi'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/permintaansaksi");
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Progress'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/progresbelajar");
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Cataan Sikap'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/catatansikap");
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Panduan Penggunaan'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/panduanpenggunaan");
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Pengaturan Akun'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/pengaturanakun");
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Log out'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/login");
+              },
+            ),
+          ],
+        ),
+      ),
+
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
         child: Column(

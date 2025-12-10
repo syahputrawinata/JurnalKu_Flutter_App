@@ -82,7 +82,10 @@ class JurnalkuPage extends StatelessWidget {
                           width: double.infinity,
                           height: 48,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              // Aksi tombol masuk
+                              Navigator.pushNamed(context, '/dashboard');
+                            },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFF0D47A1),
                               shape: RoundedRectangleBorder(

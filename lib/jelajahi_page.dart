@@ -121,7 +121,10 @@ class _JelajahiPageState extends State<JelajahiPage> {
             SizedBox(
               height: 34,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  // Aksi tombol login
+                  Navigator.pushNamed(context, '/login');
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF1E3A8A),
                   shape: RoundedRectangleBorder(

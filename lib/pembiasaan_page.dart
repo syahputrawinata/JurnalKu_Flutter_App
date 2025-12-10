@@ -6,40 +6,168 @@ class JurnalPembiasaanPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[100],
-     appBar: AppBar(
-        surfaceTintColor: Colors.transparent,
-        title: Icon(Icons.home_outlined),
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 15),
-            child: Row(
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      "Muhammad Jauhara Makinan",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      "PPLG XII-4",
-                      style: TextStyle(fontSize: 12),
-                    ),
-                  ],
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 1,
+        leading: IconButton(
+          icon: const Icon(Icons.home, color: Colors.black),
+          onPressed: () {
+            Navigator.pushNamed(context, '/explore');
+          },
+        ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: const [
+                Text(
+                  'Syahputra Winata',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
                 ),
-                SizedBox(width: 8),
-                CircleAvatar(
-                  backgroundImage: AssetImage(''),
+                SizedBox(height: 4),
+                Text(
+                  'PPLG XII-4',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 12,
+                  ),
                 ),
               ],
+            )
+          ],
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: Builder(
+              builder: (context) {
+                return GestureDetector(
+                  onTap: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  child: const CircleAvatar(
+                    radius: 16,
+                    child: Icon(Icons.person, size: 32),
+                  ),
+                );
+              },
             ),
-          ),
-        ],
+          )
+        ]
+      ),
+
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: Text('Menu', style: TextStyle(
+                  color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Dashboard'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/dashboard");
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Profil'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/profil");
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Jelajahi'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/explore");
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Jurnal Pembiasaan'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/jurnalpembiasaan");
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Permintaan Saksi'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/permintaansaksi");
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Progress'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/progresbelajar");
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Cataan Sikap'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/catatansikap");
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Panduan Penggunaan'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/panduanpenggunaan");
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Pengaturan Akun'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/pengaturanakun");
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Log out'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/login");
+              },
+            ),
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -120,61 +248,27 @@ class JurnalPembiasaanPage extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Container(
+              width: double.infinity,
+              padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey, width: 0.6),
-                borderRadius: BorderRadius.circular(4),
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: Colors.grey.shade300),
               ),
-              child: Table(
-                columnWidths: const {
-                  0: FlexColumnWidth(2),
-                  1: FlexColumnWidth(1),
-                  2: FlexColumnWidth(1),
-                },
-                border: const TableBorder(
-                  horizontalInside: BorderSide(color: Colors.grey, width: 0.3),
-                ),
-                children: const [
-                  TableRow(
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 240, 240, 240),
+              child: Column(
+                children: [
+                  Card(
+                    child: ExpansionTile(
+                      title: Text('Mengelola Keuangan'),
+                      subtitle: Text("18 November 2025"),
+                      childrenPadding: EdgeInsets.all(16),
+                      children: [
+                        tampilData('Pekerjaan', 'Mengelola Keuangan'),
+                        tampilData('Tgl', '18 November 2025'),
+                        tampilData('Saksi', 'Muhammad Jauhara Makinan'),
+                      ],
                     ),
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(12),
-                        child: Text(
-                          "Pekerjaan",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(12),
-                        child: Text(
-                          "Tgl",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(12),
-                        child: Text(
-                          "Saksi",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ],
                   ),
-                  TableRow(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(12),
-                        child: Text(
-                          "Belum ada pekerjaan yang diinput.",
-                          style: TextStyle(fontStyle: FontStyle.italic),
-                        ),
-                      ),
-                      Padding(padding: EdgeInsets.all(12), child: Text("")),
-                      Padding(padding: EdgeInsets.all(12), child: Text("")),
-                    ],
-                  ),
+                  SizedBox(height: 10),
                 ],
               ),
             ),
@@ -199,61 +293,27 @@ class JurnalPembiasaanPage extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Container(
+              width: double.infinity,
+              padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey, width: 0.6),
-                borderRadius: BorderRadius.circular(4),
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: Colors.grey.shade300),
               ),
-              child: Table(
-                columnWidths: const {
-                  0: FlexColumnWidth(2),
-                  1: FlexColumnWidth(1),
-                  2: FlexColumnWidth(1),
-                },
-                border: const TableBorder(
-                  horizontalInside: BorderSide(color: Colors.grey, width: 0.3),
-                ),
-                children: const [
-                  TableRow(
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 240, 240, 240),
+              child: Column(
+                children: [
+                  Card(
+                    child: ExpansionTile(
+                      title: Text('Flutter Dasar'),
+                      subtitle: Text("Bagus sekali, teruskan!"),
+                      childrenPadding: EdgeInsets.all(16),
+                      children: [
+                        tampilData('Materi', 'Flutter Dasar'),
+                        tampilData('Sts', 'Bagus sekali, teruskan!'),
+                        tampilData('Tgl', '18 November 2025'),
+                      ],
                     ),
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(12),
-                        child: Text(
-                          "Materi",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(12),
-                        child: Text(
-                          "Sts",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(12),
-                        child: Text(
-                          "Tgl",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ],
                   ),
-                  TableRow(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(12),
-                        child: Text(
-                          "Belum ada materi yang diinput.",
-                          style: TextStyle(fontStyle: FontStyle.italic),
-                        ),
-                      ),
-                      Padding(padding: EdgeInsets.all(12), child: Text("")),
-                      Padding(padding: EdgeInsets.all(12), child: Text("")),
-                    ],
-                  ),
+                  SizedBox(height: 10),
                 ],
               ),
             ),
@@ -336,117 +396,31 @@ class JurnalPembiasaanPage extends StatelessWidget {
           const SizedBox(),
         ],
       ),
-
-      // HEADER BARIS 2 (M1 - M4)
-      const TableRow(
-        decoration: BoxDecoration(color: Color.fromARGB(255, 240, 240, 240)),
-        children: [
-          SizedBox(),
-          Padding(padding: EdgeInsets.symmetric(vertical: 8), child: Text("M1", textAlign: TextAlign.center)),
-          Padding(padding: EdgeInsets.symmetric(vertical: 8), child: Text("M2", textAlign: TextAlign.center)),
-          Padding(padding: EdgeInsets.symmetric(vertical: 8), child: Text("M3", textAlign: TextAlign.center)),
-          Padding(padding: EdgeInsets.symmetric(vertical: 8), child: Text("M4", textAlign: TextAlign.center)),
-        ],
-      ),
-
-      TableRow(
-        children: const [
-          Align(
-            
-            child: Padding(
-              padding: EdgeInsets.all(8),
-            
-              child:
-               Text("Jumlah Poin", style: TextStyle(fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
-              
-            ),
-          ),
-          Padding(padding: EdgeInsets.all(6), child: Text("0", textAlign: TextAlign.center)),
-          Padding(padding: EdgeInsets.all(6), child: Text("0", textAlign: TextAlign.center)),
-          Padding(padding: EdgeInsets.all(6), child: Text("0", textAlign: TextAlign.center)),
-          Padding(padding: EdgeInsets.all(6), child: Text("0", textAlign: TextAlign.center)),
-        ],
-      ),
-
-      // ROW 2
-      TableRow(
-        children: const [
-          Padding(
-            padding: EdgeInsets.all(8),
-            child: Text("(5) mengerjakan project/adanya update progress belajar"),
-          ),
-          Padding(padding: EdgeInsets.all(6), child: Text("0", textAlign: TextAlign.center)),
-          Padding(padding: EdgeInsets.all(6), child: Text("0", textAlign: TextAlign.center)),
-          Padding(padding: EdgeInsets.all(6), child: Text("0", textAlign: TextAlign.center)),
-          Padding(padding: EdgeInsets.all(6), child: Text("0", textAlign: TextAlign.center)),
-        ],
-      ),
-
-      // ROW 3
-      TableRow(
-        children: const [
-          Padding(
-            padding: EdgeInsets.all(8),
-            child: Text("(1 - 5) poin dari pertanyaan atau laporan pengetahuan materi"),
-          ),
-          Padding(padding: EdgeInsets.all(6), child: Text("0", textAlign: TextAlign.center)),
-          Padding(padding: EdgeInsets.all(6), child: Text("0", textAlign: TextAlign.center)),
-          Padding(padding: EdgeInsets.all(6), child: Text("0", textAlign: TextAlign.center)),
-          Padding(padding: EdgeInsets.all(6), child: Text("0", textAlign: TextAlign.center)),
-        ],
-      ),
-
-      // ROW JUMLAH MINGGU INI
-      TableRow(
-        decoration: const BoxDecoration(color: Color.fromARGB(255, 245, 245, 245)),
-        children: const [
-          Padding(
-            padding: EdgeInsets.all(8),
-            child: Text("Jumlah poin minggu ini", style: TextStyle(fontWeight: FontWeight.bold)),
-          ),
-          Padding(padding: EdgeInsets.all(6), child: Text("0", textAlign: TextAlign.center)),
-          Padding(padding: EdgeInsets.all(6), child: Text("0", textAlign: TextAlign.center)),
-          Padding(padding: EdgeInsets.all(6), child: Text("0", textAlign: TextAlign.center)),
-          Padding(padding: EdgeInsets.all(6), child: Text("0", textAlign: TextAlign.center)),
-        ],
-      ),
-
-      // ROW CEKLIST
-      TableRow(
-        children: const [
-          Padding(
-            padding: EdgeInsets.all(8),
-            child: Text("Jumlah poin ceklist pembiasaan"),
-          ),
-          Padding(padding: EdgeInsets.all(6), child: Text("")),
-          Padding(
-            padding: EdgeInsets.all(6),
-            child: Text("19", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold)),
-          ),
-          Padding(padding: EdgeInsets.all(6), child: Text("")),
-          Padding(padding: EdgeInsets.all(6), child: Text("")),
-        ],
-      ),
-
-      // ROW TOTAL KESELURUHAN
-      TableRow(
-        decoration: const BoxDecoration(color: Color.fromARGB(255, 245, 245, 245)),
-        children: const [
-          Padding(
-            padding: EdgeInsets.all(8),
-            child: Text("Jumlah keseluruhan poin", style: TextStyle(fontWeight: FontWeight.bold)),
-          ),
-          Padding(padding: EdgeInsets.all(6), child: Text("")),
-          Padding(
-            padding: EdgeInsets.all(6),
-            child: Text("19", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold)),
-          ),
-          Padding(padding: EdgeInsets.all(6), child: Text("")),
-          Padding(padding: EdgeInsets.all(6), child: Text("")),
-        ],
-      ),
     ],
   ),
+),
+
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    poinCard(
+      title: "(5) Mengerjakan project / update progres belajar",
+      values: [0, 0, 0, 0],
+    ),
+    poinCard(
+      title: "(1-5) Poin dari pertanyaan atau laporan materi",
+      values: [0, 0, 0, 0],
+    ),
+    poinCard(
+      title: "Jumlah poin minggu ini",
+      values: [0, 0, 0, 0],
+    ),
+    jumlahPoinCard(
+      title: "Jumlah poin",
+      values: [0, 0],
+      subtitles: ["Jumlah poin ceklist pembiasaan", "Jumlah keseluruhan poin"],
+    ),
+  ],
 )
 
 
@@ -455,4 +429,122 @@ class JurnalPembiasaanPage extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget poinCard({
+  required String title,
+  required List<int> values,
+}) {
+  return Container(
+    padding: const EdgeInsets.all(12),
+    margin: const EdgeInsets.only(bottom: 16),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(8),
+      border: Border.all(color: Colors.grey.shade300, width: 0.8),
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        ),
+        const SizedBox(height: 10),
+
+        // GRID NILAI (M1 - M4)
+        GridView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: values.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,     
+            mainAxisExtent: 45,
+            crossAxisSpacing: 6,
+            mainAxisSpacing: 6,
+          ),
+          itemBuilder: (context, index) {
+            return Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(6),
+                border: Border.all(color: Colors.grey.shade300),
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("M${index + 1}"),
+                  Text(values[index].toString(),
+                      style: const TextStyle(fontWeight: FontWeight.bold)),
+                ],
+              ),
+            );
+          },
+        ),
+      ],
+    ),
+  );
+}
+
+Widget jumlahPoinCard({
+  required String title,
+  required List<String> subtitles, // ← judul tiap baris
+  required List<int> values,       // ← nilai tiap baris
+}) {
+  return Container(
+    padding: const EdgeInsets.all(12),
+    margin: const EdgeInsets.only(bottom: 16),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(8),
+      border: Border.all(color: Colors.grey.shade300, width: 0.8),
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        ),
+        const SizedBox(height: 10),
+
+        ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: subtitles.length,
+          itemBuilder: (context, index) {
+            return Container(
+              height: 45,
+              margin: const EdgeInsets.only(bottom: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(6),
+                border: Border.all(color: Colors.grey.shade300),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(child: Text(subtitles[index])),
+                  Text(
+                    values[index].toString(),
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            );
+          },
+        )
+      ],
+    ),
+  );
+}
+
+Widget tampilData(String labelData, String value,) {
+  return Padding(
+    padding: EdgeInsets.all(10),
+    child: Row(
+      children: [
+        SizedBox(width: 100, child: Text(labelData),),
+        Expanded(child: Text(value),),
+      ],
+    ),
+  );
 }

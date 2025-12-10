@@ -245,30 +245,169 @@ class Profile extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: const Color(0xFFF6F8FB),
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 1,
-          centerTitle: true,
-          title: const Text(
-            'Muhammad Jauhara Makinan',
-            style: TextStyle(color: Colors.black87, fontSize: 16, fontWeight: FontWeight.w600),
-          ),
-          leading: IconButton(
-            icon: const Icon(Icons.home_outlined, color: Colors.black54),
-            onPressed: () => Navigator.of(context).maybePop(),
-          ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 12.0),
-              child: CircleAvatar(
-                radius: 16,
-                backgroundColor: primaryBlue,
-                child: const Icon(Icons.person_outline, color: Colors.white, size: 16),
-              ),
+        backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 1,
+        leading: IconButton(
+          icon: const Icon(Icons.home, color: Colors.black),
+          onPressed: () {
+            Navigator.pushNamed(context, '/explore');
+          },
+        ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: const [
+                Text(
+                  'Syahputra Winata',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+                SizedBox(height: 4),
+                Text(
+                  'PPLG XII-4',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 12,
+                  ),
+                ),
+              ],
             )
           ],
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: Builder(
+              builder: (context) {
+                return GestureDetector(
+                  onTap: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  child: const CircleAvatar(
+                    radius: 16,
+                    child: Icon(Icons.person, size: 32),
+                  ),
+                );
+              },
+            ),
+          )
+        ]
+      ),
+
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: Text('Menu', style: TextStyle(
+                  color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Dashboard'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/dashboard");
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Profil'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/profil");
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Jelajahi'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/explore");
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Jurnal Pembiasaan'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/jurnalpembiasaan");
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Permintaan Saksi'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/permintaansaksi");
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Progress'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/progresbelajar");
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Cataan Sikap'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/catatansikap");
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Panduan Penggunaan'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/panduanpenggunaan");
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Pengaturan Akun'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/pengaturanakun");
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Log out'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/login");
+              },
+            ),
+          ],
+        ),
+      ),
         body: ListView(
           padding: const EdgeInsets.all(16.0),
           children: [
