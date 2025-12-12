@@ -1,83 +1,41 @@
 import 'package:flutter/material.dart';
-
-class Student {
-  final String name;
-  final String nis;
-  final String rombel;
-  final String rayon;
-  final String photo;
-  final int portfolioCount;
-  final int certCount;
-
-  Student({
-    required this.name,
-    required this.nis,
-    required this.rombel,
-    required this.rayon,
-    required this.photo,
-    required this.portfolioCount,
-    required this.certCount,
-  });
-}
-
-List<Student> students = [
-  Student(
-    name: "Abdee Munzie Alazkha",
-    nis: "12510778",
-    rombel: "PPLG X-3",
-    rayon: "Cia 1",
-    photo: "https://i.pravatar.cc/150?img=10",
-    portfolioCount: 2,
-    certCount: 13,
-  ),
-  Student(
-    name: "Rizky Febian",
-    nis: "12510779",
-    rombel: "PPLG X-2",
-    rayon: "Cib 2",
-    photo: "https://i.pravatar.cc/150?img=12",
-    portfolioCount: 5,
-    certCount: 8,
-  ),
-  Student(
-    name: "Nara Putra S",
-    nis: "12510780",
-    rombel: "PPLG X-1",
-    rayon: "Cis 3",
-    photo: "https://i.pravatar.cc/150?img=25",
-    portfolioCount: 3,
-    certCount: 6,
-  ),
-  Student(
-    name: "Siti Nurhaliza",
-    nis: "12510781",
-    rombel: "PPLG X-2",
-    rayon: "Cib 1",
-    photo: "https://i.pravatar.cc/150?img=20",
-    portfolioCount: 4,
-    certCount: 10,
-  ),
-  Student(
-    name: "Ahmad Dhani",
-    nis: "12510782",
-    rombel: "PPLG X-3",
-    rayon: "Cia 2",
-    photo: "https://i.pravatar.cc/150?img=33",
-    portfolioCount: 6,
-    certCount: 15,
-  ),
-];
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'models/student_model.dart';
 
 class ExplorePage extends StatefulWidget {
   const ExplorePage({super.key});
 
   @override
-  State<ExplorePage> createState() => _ExplorePageState();
+  State<ExplorePage> createState() => _JelajahiPageState();
 }
 
-class _ExplorePageState extends State<ExplorePage> {
+class _JelajahiPageState extends State<ExplorePage> {
   final TextEditingController _searchController = TextEditingController();
-  List<Student> filteredStudents = students;
+  // List<Student> filteredStudents = students;
+  List<Student> students = [];
+  List<Student> filteredStudents = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchStudents();
+  }
+
+  Future<void> fetchStudents() async {
+    final response = await http.get(Uri.parse('http://127.0.0.1:8000/api/users'));
+
+    if (response.statusCode == 200) {
+      final List data = jsonDecode(response.body);
+
+      students = data.map((json) => Student.fromJson(json)).toList();
+      filteredStudents = students;
+
+      setState(() {}); // update UI
+    } else {
+      throw Exception('Failed to load data');
+    }
+  }
 
   void _filterStudents(String query) {
     setState(() {
@@ -122,7 +80,8 @@ class _ExplorePageState extends State<ExplorePage> {
               height: 34,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/dashboard');
+                  // Aksi tombol login
+                  Navigator.pushNamed(context, '/login');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF1E3A8A),
@@ -133,7 +92,7 @@ class _ExplorePageState extends State<ExplorePage> {
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                 ),
                 child: const Text(
-                  "Dashboard",
+                  "Login",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 13,
@@ -317,7 +276,9 @@ class StudentCard extends StatelessWidget {
                   ),
                   child: CircleAvatar(
                     radius: 36,
-                    backgroundImage: NetworkImage(student.photo),
+                    backgroundImage: (student.image.isNotEmpty)
+                    ? NetworkImage(student.image)
+                    : NetworkImage("https://i.pravatar.cc/150"),
                   ),
                 ),
                 const SizedBox(width: 16),
