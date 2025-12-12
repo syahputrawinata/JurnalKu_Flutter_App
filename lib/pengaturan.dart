@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class PengaturanPage extends StatefulWidget {
   const PengaturanPage({super.key});
@@ -8,70 +10,40 @@ class PengaturanPage extends StatefulWidget {
 }
 
 class _PengaturanPageState extends State<PengaturanPage> {
-  String _name = 'Muhammad Jauhara Makinan';
-  String _nis = '12309878';
-  String _rombel = 'PPLG XII-4';
-  String _rayon = 'Cic 10';
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController nisController = TextEditingController();
+  final TextEditingController rombelController = TextEditingController();
+  final TextEditingController rayonController = TextEditingController();
 
   String _oldPass = '';
   String _newPass = '';
 
-  // PreferredSizeWidget _buildAppBar() {
-  //   return PreferredSize(
-  //     preferredSize: const Size.fromHeight(70),
-  //     child: AppBar(
-  //       backgroundColor: Colors.white,
-  //       elevation: 1,
-  //       leading: IconButton(
-  //         icon: const Icon(Icons.home, color: Colors.black),
-  //         onPressed: () {
-  //           Navigator.push(
-  //             context,
-  //             MaterialPageRoute(
-  //               builder: (context) => const LandingPage(),
-  //             ),
-  //           );
-  //         },
-  //       ),
-  //       title: Row(
-  //         mainAxisAlignment: MainAxisAlignment.end,
-  //         children: [
-  //           Column(
-  //             crossAxisAlignment: CrossAxisAlignment.end,
-  //             mainAxisAlignment: MainAxisAlignment.center,
-  //             children: const [
-  //               Text(
-  //                 'Muhammad Jauhara Makinan',
-  //                 style: TextStyle(
-  //                   color: Colors.black,
-  //                   fontWeight: FontWeight.bold,
-  //                   fontSize: 16,
-  //                 ),
-  //               ),
-  //               SizedBox(height: 4),
-  //               Text(
-  //                 'PPLG XII-4',
-  //                 style: TextStyle(
-  //                   color: Colors.grey,
-  //                   fontSize: 12,
-  //                 ),
-  //               ),
-  //             ],
-  //           ),
-  //         ],
-  //       ),
-  //       actions: [
-  //         Padding(
-  //           padding: const EdgeInsets.only(right: 12.0),
-  //           child: CircleAvatar(
-  //             backgroundColor: Colors.blueGrey[50],
-  //             child: const Icon(Icons.person, size: 36, color: Colors.blueGrey),
-  //           ),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
+  final int userId = 1;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchUser();
+  }
+
+  Future<void> fetchUser() async {
+    final response = await http.get(
+      Uri.parse('http://127.0.0.1:8000/api/users/$userId'),
+    );
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+
+      setState(() {
+        nameController.text = data['name'] ?? '-';
+        nisController.text = data['nis'].toString();
+        rombelController.text = data['rombel'] ?? '-';
+        rayonController.text = data['rayon'] ?? '-';
+      });
+    } else {
+      print("Gagal fetch user");
+    }
+  }
 
   InputDecoration _readOnlyDecoration(String hint) {
     return InputDecoration(
@@ -341,7 +313,7 @@ class _PengaturanPageState extends State<PengaturanPage> {
                     const Text('Nama', style: TextStyle(fontWeight: FontWeight.w600)),
                     const SizedBox(height: 8),
                     TextFormField(
-                      initialValue: _name,
+                      controller: nameController,
                       readOnly: true,
                       decoration: _readOnlyDecoration('Nama'),
                     ),
@@ -349,7 +321,7 @@ class _PengaturanPageState extends State<PengaturanPage> {
                     const Text('NIS', style: TextStyle(fontWeight: FontWeight.w600)),
                     const SizedBox(height: 8),
                     TextFormField(
-                      initialValue: _nis,
+                      controller: nisController,
                       readOnly: true,
                       decoration: _readOnlyDecoration('NIS'),
                     ),
@@ -357,7 +329,7 @@ class _PengaturanPageState extends State<PengaturanPage> {
                     const Text('Rombel', style: TextStyle(fontWeight: FontWeight.w600)),
                     const SizedBox(height: 8),
                     TextFormField(
-                      initialValue: _rombel,
+                      controller: rombelController,
                       readOnly: true,
                       decoration: _readOnlyDecoration('Rombel'),
                     ),
@@ -365,7 +337,7 @@ class _PengaturanPageState extends State<PengaturanPage> {
                     const Text('Rayon', style: TextStyle(fontWeight: FontWeight.w600)),
                     const SizedBox(height: 8),
                     TextFormField(
-                      initialValue: _rayon,
+                      controller: rayonController,
                       readOnly: true,
                       decoration: _readOnlyDecoration('Rayon'),
                     ),

@@ -1,10 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-class Profile extends StatelessWidget {
+class Profile extends StatefulWidget {
   const Profile({super.key});
 
   static const Color primaryBlue = Color(0xFF0B4C8C);
   static const Color accentGreen = Color(0xFF18A85B);
+
+  @override
+  State<Profile> createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
+  String _name = '';
+  String _nis = '';
+  String _rombel = '';
+  String _rayon = '';
+
+  final int userId = 1;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchUser();
+  }
+
+  Future<void> fetchUser() async {
+    final response = await http.get(Uri.parse('http://127.0.0.1:8000/api/users/$userId'));
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      setState(() {
+        _name = data['name'] ?? '-';
+        _nis = data['nis'].toString();
+        _rombel = data['rombel'] ?? '-';
+        _rayon = data['rayon'] ?? '-';
+      });
+    } else {
+      print("Gagal fetch user");
+    }
+  }
 
   void _showMessage(BuildContext context, String msg) {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -52,7 +88,7 @@ class Profile extends StatelessWidget {
                         onTap: () => _showMessage(context, 'Ubah foto profil'),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: primaryBlue,
+                            color: Profile.primaryBlue,
                             shape: BoxShape.circle,
                             border: Border.all(color: Colors.white, width: 2),
                           ),
@@ -70,7 +106,7 @@ class Profile extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () => _showMessage(context, 'Bagikan profil'),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: primaryBlue,
+                    backgroundColor: Profile.primaryBlue,
                     padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                   ),
@@ -87,14 +123,14 @@ class Profile extends StatelessWidget {
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Text(
-                        'Muhammad Jauhara Makinan',
+                        _name,
                         style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
                       ),
                       SizedBox(height: 6),
                       Text(
-                        '12309878 | PPLG XII-4 | Cic 10',
+                        '$_nis | $_rombel | $_rayon',
                         style: TextStyle(color: Colors.black54),
                       ),
                     ],
@@ -106,9 +142,9 @@ class Profile extends StatelessWidget {
           const SizedBox(height: 12),
           const Divider(height: 1),
           TabBar(
-            labelColor: primaryBlue,
+            labelColor: Profile.primaryBlue,
             unselectedLabelColor: Colors.black54,
-            indicatorColor: primaryBlue,
+            indicatorColor: Profile.primaryBlue,
             tabs: const [
               Tab(text: 'Overview'),
               Tab(text: 'Portfolio'),
@@ -159,7 +195,7 @@ class Profile extends StatelessWidget {
                         icon: const Icon(Icons.description_outlined, color: Colors.white),
                         label: const Text('Lihat CV', style: const TextStyle(color: Colors.white)),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: primaryBlue,
+                          backgroundColor: Profile.primaryBlue,
                           padding: const EdgeInsets.symmetric(vertical: 14),
                         ),
                       ),
@@ -201,7 +237,7 @@ class Profile extends StatelessWidget {
                         icon: const Icon(Icons.credit_card, color: Colors.white),
                         label: const Text('Lihat Kartu Pelajar', style: const TextStyle(color: Colors.white)),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: accentGreen,
+                          backgroundColor: Profile.accentGreen,
                           padding: const EdgeInsets.symmetric(vertical: 14),
                         ),
                       ),
@@ -418,7 +454,7 @@ class Profile extends StatelessWidget {
                 icon: const Icon(Icons.arrow_back, color: Colors.white),
                 label: const Text('Kembali', style: TextStyle(color: Colors.white)),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: primaryBlue,
+                  backgroundColor: Profile.primaryBlue,
                   padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                 ),
